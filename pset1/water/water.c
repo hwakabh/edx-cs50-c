@@ -3,6 +3,7 @@
 int main(void)
 {
     int minutes;
+    // TODO: Bugfix when user entered string(s)
     do
     {
         printf("Minutes : ");
