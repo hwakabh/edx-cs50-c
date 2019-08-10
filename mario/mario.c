@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 void print_blocks(int num);
-void print_blanks(int num);
 
 int main(void)
 {
@@ -10,11 +9,16 @@ int main(void)
     int h;
     printf("Height : ");
     scanf("%d", &h);
+    printf("\n");
 
     for ( int i = 0; i < h; i++)
     {
         // Left blocks
-        print_blanks(h - i - 1);
+        int blanks = h - i - 1;
+        for (int b = 0; b < blanks; b++)
+        {
+            printf(" ");
+        }
         print_blocks(i + 1);
         // Separate blocks right and left
         printf("|  |");
@@ -31,13 +35,5 @@ void print_blocks(int num)
     for (int j = 0; j < num; j++)
     {
         printf("#");
-    }
-}
-
-void print_blanks(int num)
-{
-    for (int j = 0; j < num; j++)
-    {
-        printf(" ");
     }
 }
