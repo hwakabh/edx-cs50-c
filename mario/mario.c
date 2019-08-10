@@ -10,14 +10,17 @@ int main(void)
     printf("Height : ");
     scanf("%d", &h);
 
-    print_blocks(h);
+    for ( int i = 0; i < h; i++)
+    {
+        print_blocks(i + 1);
+    }
 
     return 0;
 }
 
 void print_blocks(int num)
 {
-    for (int i = 0; i < num; i++)
+    for (int j = 0; j < num; j++)
     {
         printf("#");
     }
