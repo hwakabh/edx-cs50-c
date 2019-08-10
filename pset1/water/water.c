@@ -4,12 +4,10 @@ int main(void)
 {
     int minutes;
     // TODO: Bugfix when user entered string(s)
-    do
-    {
+    do {
         printf("Minutes : ");
         scanf("%d", &minutes);
-    }
-    while (minutes <= 0);
+    } while (minutes <= 0);
 
     printf("Bottle : %d\n", minutes * 12);
 

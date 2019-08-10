@@ -8,21 +8,17 @@ const int NUM_LIMIT = 23;
 int main(void)
 {
     int height;
-    do
-    {
+    do {
         printf("Height : ");
         scanf("%d", &height);
         printf("\n");
-    }
-    while (height > NUM_LIMIT || height < 0);
+    } while (height > NUM_LIMIT || height < 0);
 
     // Drawing per line
-    for (int i = 0; i < height; i++)
-    {
+    for (int i = 0; i < height; i++) {
         // Left blocks
         int blanks = height - i - 1;
-        for (int b = 0; b < blanks; b++)
-        {
+        for (int b = 0; b < blanks; b++) {
             printf(" ");
         }
         print_blocks(i + 1);
@@ -37,8 +33,7 @@ int main(void)
 
 void print_blocks(int num)
 {
-    for (int j = 0; j < num; j++)
-    {
+    for (int j = 0; j < num; j++) {
         printf("#");
     }
 }
