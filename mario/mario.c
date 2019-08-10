@@ -2,31 +2,36 @@
 
 void print_blocks(int num);
 
+const int NUM_LIMIT = 23;
+// TODO: Gap string should be used as const
+
 int main(void)
 {
+    int height;
+    do
+    {
+        printf("Height : ");
+        scanf("%d", &height);
+        printf("\n");
+    }
+    while (height > NUM_LIMIT || height < 0);
 
-    // Get height of blocks
-    int h;
-    printf("Height : ");
-    scanf("%d", &h);
-    printf("\n");
-
-    for ( int i = 0; i < h; i++)
+    // Drawing per line
+    for (int i = 0; i < height; i++)
     {
         // Left blocks
-        int blanks = h - i - 1;
+        int blanks = height - i - 1;
         for (int b = 0; b < blanks; b++)
         {
             printf(" ");
         }
         print_blocks(i + 1);
-        // Separate blocks right and left
+        // Gaps
         printf("|  |");
         // Right blocks
         print_blocks(i + 1);
         printf("\n");
     }
-
     return 0;
 }
 
