@@ -1,23 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-// Checksums
-// - AMEX :
-//   - 15 digits
-//   - starts with 34 or 37
-// - MasterCard :
-//   - 16 digits
-//   - starts with 51, 52, 53, 54, 55
-// - Visa :
-//   - 13 or 16 digits
-//   - starts with 4
-// Examples:
-// - AMEX : 378282246310005 / 371449635398431 / 378734493671000
-// - MASTER : 2221000000000009 / 2223000048400011 / 2223016768739313 / 5555555555554444 / 5105105105105100
-// - VISA : 4111111111111111 / 4012888888881881 / 4222222222222
-
 int get_digits_number(long n);
-// int check_card_number(long n, int d);
 
 int main(void)
 {
@@ -27,7 +11,6 @@ int main(void)
 
     // Validation with digit numbers
     int nd = get_digits_number(cc_number);
-    printf("%d digit(s) number was entered.\n", nd);
 
     int cc_numbers[nd];
     for (int i = nd; i > 0 ; i--) {
@@ -36,50 +19,63 @@ int main(void)
         cc_number = cc_number - (num * pow(10, i - 1));
     }
 
-
-    // printf("Each of numbers in array : \n");
-    // for (int j = 0; j < nd; j++) {
-    //     printf("%d\n", cc_numbers[j]);
-    // }
-
-
-    if (nd == 15) {
-        // Validation with first numbers for AMEX
-        if (cc_numbers[0] == 3) {
-            if (cc_numbers[1] == 4 || cc_numbers[1] == 7) {
-                printf(">>> AMEX Card number entered.\n");
-            } else {
-                printf(">>> INVALID : Please check second number of input.\n");
-            }
+    // Checksum calculation
+    int subtotal = 0;
+    int reminders = 0;
+    int num_flag = nd % 2;
+    for (int m = num_flag; m < nd ; m += 2) {
+        if ((cc_numbers[m] * 2) > 9) {
+            subtotal += ((cc_numbers[m] * 2) / 10) + ((cc_numbers[m] * 2) % 10);
         } else {
-            printf(">>> INVALID : Please check first number of input.\n");
+            subtotal += (cc_numbers[m] * 2);
         }
+    }
+    for (int n = 1 - num_flag; n < nd ; n += 2) {
+        reminders += cc_numbers[n];
+    }
 
-    } else if (nd == 13) {
-        // Validation with first numbers for VISA
-        if (cc_numbers[0] == 4) {
-            printf(">>> VISA Card number entered.\n");
-        } else {
-            printf(">>> INVALID : Please check first number of input.\n");
-        }
-
-    } else if (nd == 16) {
-        // Validation with First number
-        if (cc_numbers[0] == 4) {
-            printf(">>> VISA Card number entered.\n");
-        } else if (cc_numbers[0] == 5) {
-            if (cc_numbers[1] == 1 || cc_numbers[1] == 2 || cc_numbers[1] == 3 || cc_numbers[1] == 4 || cc_numbers[1] == 5 ) {
-                printf(">>> MASTER Card number entered.\n");
-            } else {
-                printf(">>> INVALID : Please check second number of input.\n");
-            }
-        } else {
-            printf(">>> INVALID : Please check first number of input.\n");
-        }
-
+    // MOD-10 Check
+    if ((subtotal + reminders) % 10 != 0) {
+        printf(">>> Invalid Card with checksum.\n");
     } else {
-        printf(">>> INVALID : Please check digits.\n");
-        return 1;
+        if (nd == 15) {
+            // Validation with first numbers for AMEX
+            if (cc_numbers[0] == 3) {
+                if (cc_numbers[1] == 4 || cc_numbers[1] == 7) {
+                    printf(">>> AMEX Card number entered.\n");
+                } else {
+                    printf(">>> INVALID : Please check second number of input.\n");
+                }
+            } else {
+                printf(">>> INVALID : Please check first number of input.\n");
+            }
+
+        } else if (nd == 13) {
+            // Validation with first numbers for VISA
+            if (cc_numbers[0] == 4) {
+                printf(">>> VISA Card number entered.\n");
+            } else {
+                printf(">>> INVALID : Please check first number of input.\n");
+            }
+
+        } else if (nd == 16) {
+            // Validation with First number
+            if (cc_numbers[0] == 4) {
+                printf(">>> VISA Card number entered.\n");
+            } else if (cc_numbers[0] == 5) {
+                if (cc_numbers[1] == 1 || cc_numbers[1] == 2 || cc_numbers[1] == 3 || cc_numbers[1] == 4 || cc_numbers[1] == 5 ) {
+                    printf(">>> MASTER Card number entered.\n");
+                } else {
+                    printf(">>> INVALID : Please check second number of input.\n");
+                }
+            } else {
+                printf(">>> INVALID : Please check first number of input.\n");
+            }
+
+        } else {
+            printf(">>> INVALID : Please check digits.\n");
+            return 1;
+        }
     }
 }
 
@@ -93,22 +89,3 @@ int get_digits_number(long n)
     }
     return digit;
 }
-
-/**
- * Checksum Example:
- *
- * 378282246310005
- *  - - - - - - -
- *
- * 0*2 + 0*2 + 3*2 + 4*2 + 2*2 + 2*2 + 7*2 = 27
- *
- * 378282246310005
- * - - - - - - - -
- *
- * 3 + 8 + 8 + 2 + 6 + 1 + 0 + 5 = 33
- *
- * 27 + 33 = 60
- *
- * 60 % 10 == 0 / VALID CARD
- *
- */
