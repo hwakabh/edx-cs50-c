@@ -17,7 +17,7 @@
 // - VISA : 4111111111111111 / 4012888888881881 / 4222222222222
 
 int get_digits_number(long n);
-int check_card_number(long n);
+// int check_card_number(long n, int d);
 
 int main(void)
 {
@@ -29,18 +29,24 @@ int main(void)
     int nd = get_digits_number(cc_number);
     printf("%d digit(s) number was entered.\n", nd);
 
-    int num_first = cc_number / pow(10, nd - 1);
-    printf("First digit number is : %d\n", num_first);
+    int cc_numbers[nd];
+    for (int i = nd; i > 0 ; i--) {
+        int num = cc_number / pow(10, i - 1);
+        cc_numbers[nd - i] = num;
+        cc_number = cc_number - (num * pow(10, i - 1));
+    }
 
-    int num_second = (cc_number - (num_first * pow(10, nd - 1))) / pow(10, nd -2);
-    printf("Second digit number is : %d\n", num_second);
+
+    // printf("Each of numbers in array : \n");
+    // for (int j = 0; j < nd; j++) {
+    //     printf("%d\n", cc_numbers[j]);
+    // }
+
 
     if (nd == 15) {
-        // Checksum Calculation for AMEX
-
         // Validation with first numbers for AMEX
-        if (num_first == 3) {
-            if (num_second == 4 || num_second == 7) {
+        if (cc_numbers[0] == 3) {
+            if (cc_numbers[1] == 4 || cc_numbers[1] == 7) {
                 printf(">>> AMEX Card number entered.\n");
             } else {
                 printf(">>> INVALID : Please check second number of input.\n");
@@ -49,26 +55,20 @@ int main(void)
             printf(">>> INVALID : Please check first number of input.\n");
         }
 
-
     } else if (nd == 13) {
-        // Checksum Calculation for VISA
-
         // Validation with first numbers for VISA
-        if (num_first == 4) {
+        if (cc_numbers[0] == 4) {
             printf(">>> VISA Card number entered.\n");
         } else {
             printf(">>> INVALID : Please check first number of input.\n");
         }
 
-
     } else if (nd == 16) {
-        // Checksum Calculation for VISA
-
         // Validation with First number
-        if (num_first == 4) {
+        if (cc_numbers[0] == 4) {
             printf(">>> VISA Card number entered.\n");
-        } else if (num_first == 5) {
-            if (num_second == 1 || num_second == 2 ||  num_second == 3 || num_second == 4 || num_second == 5 ) {
+        } else if (cc_numbers[0] == 5) {
+            if (cc_numbers[1] == 1 || cc_numbers[1] == 2 || cc_numbers[1] == 3 || cc_numbers[1] == 4 || cc_numbers[1] == 5 ) {
                 printf(">>> MASTER Card number entered.\n");
             } else {
                 printf(">>> INVALID : Please check second number of input.\n");
@@ -76,7 +76,6 @@ int main(void)
         } else {
             printf(">>> INVALID : Please check first number of input.\n");
         }
-
 
     } else {
         printf(">>> INVALID : Please check digits.\n");
@@ -94,12 +93,6 @@ int get_digits_number(long n)
     }
     return digit;
 }
-
-// // Functions for get checksum
-// int check_card_numer(long n)
-// {
-
-// }
 
 /**
  * Checksum Example:
