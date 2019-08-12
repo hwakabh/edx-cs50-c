@@ -12,22 +12,24 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int key = 12;
+    int key = 13;
 
     char plaintext[256];
     printf("Enter plaintext : ");
     scanf("%s", plaintext);
 
-    printf("Ciphertext : ");
+    printf("Ciphertext : \n");
     for (int i = 0; i < 256; i++) {
         if (plaintext[i] == '\0') {
             break;
         }
-        char c = plaintext[i] + key;
-        if (c < 65 || 122 < c) {
-            printf("Out of ASCII\n");
+        unsigned char c = plaintext[i] + key;
+        if (122 < c) {
+            c = ((c - 122) % 26) + 'a' - 1;
+        } else if (90 < c && c < 97) {
+            c = ((c - 90) % 26) + 'A' - 1; 
         }
-        printf("%c", c);
+        printf("Key %d | Plain %c : %d | Cipher %c : %d\n", key, plaintext[i], plaintext[i], c, c);
     }
     printf("\n");
 
