@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
@@ -12,13 +12,12 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int key = 13;
-
+    int key = atoi(argv[1]);
     char plaintext[256];
     printf("Enter plaintext : ");
     scanf("%s", plaintext);
 
-    printf("Ciphertext : \n");
+    printf("Ciphertext : ");
     for (int i = 0; i < 256; i++) {
         if (plaintext[i] == '\0') {
             break;
@@ -29,7 +28,8 @@ int main(int argc, char *argv[])
         } else if (90 < c && c < 97) {
             c = ((c - 90) % 26) + 'A' - 1; 
         }
-        printf("Key %d | Plain %c : %d | Cipher %c : %d\n", key, plaintext[i], plaintext[i], c, c);
+        // printf("Key %d | Plain %c : %d | Cipher %c : %d\n", key, plaintext[i], plaintext[i], c, c);
+        printf("%c", c);
     }
     printf("\n");
 
