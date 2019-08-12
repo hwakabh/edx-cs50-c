@@ -2,9 +2,9 @@
 
 ***
 
-## caeser
+## caesar
 
-- `Caeser encryption` basic
+- `Caesar encryption` basic
   - https://docs.cs50.net/2018/x/psets/2/caesar/caesar.html
 
 ## vigenere
