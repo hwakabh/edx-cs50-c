@@ -4,6 +4,7 @@ void print_blocks(int num);
 
 const int NUM_LIMIT = 23;
 // TODO: Gap string should be used as const
+const char GAP_STRING[] = "|  |";
 
 int main(void)
 {
@@ -23,7 +24,7 @@ int main(void)
         }
         print_blocks(i + 1);
         // Gaps
-        printf("|  |");
+        printf("%s", GAP_STRING);
         // Right blocks
         print_blocks(i + 1);
         printf("\n");
