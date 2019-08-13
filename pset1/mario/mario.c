@@ -3,7 +3,6 @@
 void print_blocks(int num);
 
 const int NUM_LIMIT = 23;
-// TODO: Gap string should be used as const
 const char GAP_STRING[] = "|  |";
 
 int main(void)
