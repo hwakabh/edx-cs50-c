@@ -14,7 +14,7 @@
 
 ## crack
 
-- Password cracking of `/etc/passwd` on Linux
+- Password cracking of `/etc/shadow` on Linux Machine
   - https://docs.cs50.net/2018/x/psets/2/crack/crack.html
 
 ## initials
