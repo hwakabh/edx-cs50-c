@@ -20,4 +20,5 @@
 ## initials
 
 - Handling strings conceptually with C
-  - http://cdn.cs50.net/2016/x/psets/2/pset2/pset2.html#initializing
+  - https://docs.cs50.net/2017/ap/problems/initials/more/initials.html
+
