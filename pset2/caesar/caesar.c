@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     int key = atoi(argv[1]);
     char plaintext[256];
     printf("Enter plaintext : ");
-    scanf("%s", plaintext);
+    scanf("%[^\n]", plaintext);
 
     printf("Ciphertext : ");
     for (int i = 0; i < 256; i++) {
@@ -27,8 +27,10 @@ int main(int argc, char *argv[])
             c = ((c - 122) % 26) + 'a' - 1;
         } else if (90 < c && c < 97) {
             c = ((c - 90) % 26) + 'A' - 1; 
+        // Case for space included
+        } else if (c == 42) {
+            c = 32;
         }
-        // printf("Key %d | Plain %c : %d | Cipher %c : %d\n", key, plaintext[i], plaintext[i], c, c);
         printf("%c", c);
     }
     printf("\n");
