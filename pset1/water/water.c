@@ -10,7 +10,10 @@ int main(void)
     // TODO: Bugfix when user entered string(s)
     do {
         printf("Minutes : ");
-        scanf("%d", &minutes);
+        if (scanf("%d", &minutes) != 1) {
+            printf("Please enter numeric values, string format is not supported.\n");
+            return 1;
+        }
     } while (minutes <= 0);
 
     int bottle_per_min = (ounce_per_min / ounce_per_bottle) * minutes;
