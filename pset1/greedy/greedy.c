@@ -15,7 +15,10 @@ int main(void)
     // TODO: Escape closed loop when user entered string(s)
     do {
         printf("Please enter amounts of change[$]: ");
-        scanf("%f", &dollar_owed);
+        if (scanf("%f", &dollar_owed) != 1) {
+            printf("Please enter numeric numbers, string format is not supported.\n");
+            return 1;
+        }
         cents_owed = round(dollar_owed * 100);
     } while (cents_owed <= 0);
 
