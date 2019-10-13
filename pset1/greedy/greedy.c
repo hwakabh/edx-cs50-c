@@ -12,7 +12,6 @@ int main(void)
     int cents_owed;
     int coins = 0;
 
-    // TODO: Escape closed loop when user entered string(s)
     do {
         printf("Please enter amounts of change[$]: ");
         if (scanf("%f", &dollar_owed) != 1) {

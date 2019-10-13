@@ -7,7 +7,6 @@ const int ounce_per_bottle = 16;
 int main(void)
 {
     int minutes;
-    // TODO: Bugfix when user entered string(s)
     do {
         printf("Minutes : ");
         if (scanf("%d", &minutes) != 1) {
