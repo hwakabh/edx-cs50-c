@@ -28,7 +28,7 @@
   - If mod(10) of checksum is 0, the card is valid, or if not, invalid.
 
 - Example Card numbers for testings and development
-  - https://developer.paypal.com/docs/classic/payflow/payflow-pro/payflow-pro-testing/#credit-card-numbers-for-testing
+  - <https://developer.paypal.com/docs/classic/payflow/payflow-pro/payflow-pro-testing/#credit-card-numbers-for-testing>
 
   - AMEX
     - Valid numbers
