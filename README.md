@@ -27,6 +27,36 @@ The problem sets in this repository are basically based on 2019 CS50 courses, bu
   - music
   - fifteen
 
+## Runtimes
+
+As the CS50 course uses the online coding environment, `cloud9`, all the codes here are considered to build locally on your environments.  
+Runtimes expected to compile/run correctly, under the software versions below:  
+
+| Components | Version |
+| --- | --- |
+| OS | OSX 10.15.4 (Catalina) |
+| gcc | 11.0.3 |
+
+Note that it's required to install `gcc` on your environments if you use OSX, since OSX does not include gcc by default.  
+
+```bash
+# Install gcc on your OSX
+$ xcode-select --install
+# Check gcc version
+$ gcc -dumpversion
+```
+
+The outputs of detailed version with `gcc` might be like below:  
+
+```bash
+$ gcc -v
+Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/4.2.1
+Apple clang version 11.0.3 (clang-1103.0.32.29)
+Target: x86_64-apple-darwin19.4.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+```
+
 ## Disclaimer
 
 All the contents on this repository is totally for personal version controllings, and does not intend to provide best ways to coding with the code here.  
