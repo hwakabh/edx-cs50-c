@@ -9,3 +9,5 @@
 
 # For development environment
 .vscode/*
+.DS_Store
+*.code-workspace
