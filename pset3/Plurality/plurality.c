@@ -14,8 +14,17 @@ int main(int argc, char *argv[])
 {
     // --- Check inputs from command line
     // If argc < 2, return 1 and exit program with printing usage
-    
+    if (argc < 2) {
+        printf("Usage: ./plurality [candidate ...]\n");
+        return 1;
+    }
     // If numbers of candidates given by argv, return 2 and exit program
+    int num_candidates = argc - 1;
+    if (num_candidates > MAX) {
+        printf("Maximum number of candidates is %d\n", MAX);
+        return 2;
+    }
+
     return 0;
 }
 
