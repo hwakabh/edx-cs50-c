@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #define MAX 9       // Maximun numbers of candidates
 
 typedef struct {
@@ -6,8 +7,10 @@ typedef struct {
     int votes;
 } candidate;
 
-int vote(const char *n);
-void print_winner(candidate cands);
+candidate candidates[MAX];
+
+int vote(char vtr[], int num_cands);
+void print_winner(candidate cands[]);
 
 
 int main(int argc, char *argv[])
@@ -25,17 +28,51 @@ int main(int argc, char *argv[])
         return 2;
     }
 
+    // Define arrays of candidates
+    for (int i = 0; i < num_candidates; i++) {
+        candidates[i].name = argv[i + 1];
+        candidates[i].votes = 0;
+    }
+
+    // Take numbers of voters
+    printf("Number of voters: ");
+    int voter_count;
+    scanf("%i", &voter_count);
+
+    // Loop over all voters
+    for (int j = 0; j < voter_count; j++) {
+        printf("Vote: ");
+        char voter[256];
+        scanf("%s", voter);
+
+        if (vote(voter, num_candidates) != 0) {
+            printf("Invalid vote.\n");
+        }
+        // for (int i = 0; i < num_candidates; i++) {
+        //     printf("%s : %d\n", candidates[i].name, candidates[i].votes);
+        // }
+    }
+
+    // // Display winner of election
+    // print_winner(candidate candidates);
+
     return 0;
 }
 
 
-int vote(const char *n)
+int vote(char vtr[], int num_cands)
 {
-    // Functions to update candidates[].votes, if matches the name
+    for (int l = 0; l < num_cands; l++) {
+        if (strcmp(vtr, candidates[l].name) == 0) {
+            candidates[l].votes += 1;
+            return 0;
+        }
+    }
+    return 1;
 }
 
-void print_winner(candidate cands)
-{
-    // Functions to member(s) whose vote is biggest
-    // -- If tie-case, print all the winners
-}
+// void print_winner(candidate cands[])
+// {
+//     // Functions to member(s) whose vote is biggest
+//     // -- If tie-case, print all the winners
+// }
