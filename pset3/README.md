@@ -2,11 +2,14 @@
 
 ***
 
-## music
+## Plurality
 
-- <https://docs.cs50.net/2018/x/psets/3/music/music.html>
+- <https://cs50.harvard.edu/x/2020/psets/3/plurality/>
 
-## fifteen
+## Runoff
 
-- Implement with sort and search algorithm for games
-  - <http://cdn.cs50.net/2016/x/psets/3/pset3/pset3.html#the_game_begins>
+- <https://cs50.harvard.edu/x/2020/psets/3/runoff/>
+
+## Tideman
+
+- <https://cs50.harvard.edu/x/2020/psets/3/tideman/>
