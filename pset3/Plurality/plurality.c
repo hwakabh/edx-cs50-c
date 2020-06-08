@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#define MAX 9       // Maximun numbers of candidates
+// Maximum numbers of candidates
+#define MAX 9
 
 typedef struct {
     const char *name;
@@ -9,8 +10,9 @@ typedef struct {
 
 candidate candidates[MAX];
 
+// Function prototypes
 int vote(char vtr[], int num_cands);
-void print_winner(candidate cands[]);
+void print_winner(candidate cands[], int num_cands);
 
 
 int main(int argc, char *argv[])
@@ -53,8 +55,8 @@ int main(int argc, char *argv[])
         // }
     }
 
-    // // Display winner of election
-    // print_winner(candidate candidates);
+    // Display winner of election
+    print_winner(candidates, num_candidates);
 
     return 0;
 }
@@ -71,8 +73,19 @@ int vote(char vtr[], int num_cands)
     return 1;
 }
 
-// void print_winner(candidate cands[])
-// {
-//     // Functions to member(s) whose vote is biggest
-//     // -- If tie-case, print all the winners
-// }
+void print_winner(candidate cands[], int num_cands)
+{
+    int max_vote = 0;
+    for (int m = 0; m < num_cands; m++) {
+        if (cands[m].votes > max_vote) {
+            max_vote = cands[m].votes;
+        }
+    }
+
+    for (int n = 0; n < num_cands; n++) {
+        if (cands[n].votes == max_vote) {
+            printf("%s\n", cands[n].name);
+        }
+    }
+    return;
+}
