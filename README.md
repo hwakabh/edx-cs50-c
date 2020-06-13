@@ -12,18 +12,18 @@ Based on the online courses by edX, MOOC by Harbard, MIT, and more, **CS50's int
 
 The problem sets in this repository are basically based on 2019 CS50 courses, but additionally including the others of past courses and latest ones.  
 
-- [Problem Set 1](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset1)
-  - [hello](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset1/hello)
-  - [water](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset1/water)
-  - [mario](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset1/mario)
-  - [greedy](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset1/greedy)
-  - [credit](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset1/credit)
-- [Problem Set 2](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset2)
-  - [caesar](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset2/caesar)
-  - [vigenere](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset2/vigenere)
-  - [crack](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset2/crack)
-  - [initials](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset2/initials)
-- [Problem Set 3](https://github.com/hwakabh/edx-harvard-cs50/tree/master/pset3)
+- [Problem Set 1](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week1/)
+  - [hello](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week1/psets/hello/)
+  - [water](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week1/psets/water/)
+  - [mario](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week1/psets/mario/)
+  - [greedy](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week1/psets/greedy/)
+  - [credit](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week1/psets/credit/)
+- [Problem Set 2](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2)
+  - [caesar](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/caesar)
+  - [vigenere](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/vigenere)
+  - [crack](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/crack)
+  - [initials](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/initials)
+- [Problem Set 3](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week3/)
   - music
   - fifteen
 
