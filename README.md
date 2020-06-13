@@ -57,6 +57,18 @@ Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 ```
 
+## Libraries
+
+While CS50 courses, it's basically required to use `cs50.h` to understanding well for beginners, source codes here it does not.  
+So the answers to problem sets, or examples in the courses should be differ from the ones described in course.  
+
+If you'd like to use basic `cs50.h` for your codes, it's required to add the below in your codes `#include <cs50.h>`, and you should compile with the command like:
+
+```bash
+# Use linker with `-l` options
+$ gcc -Wall -o hello ./hello.c -lcs50
+```
+
 ## Disclaimer
 
 All the contents on this repository is totally for personal version controllings, and does not intend to provide best ways to coding with the code here.  
