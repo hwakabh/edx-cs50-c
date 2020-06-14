@@ -59,8 +59,7 @@ InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 
 ## Libraries
 
-While CS50 courses, it's basically required to use `cs50.h` to understanding well for beginners, source codes here it does not.  
-So the answers to problem sets, or examples in the courses should be differ from the ones described in course.  
+While CS50 courses, it's basically required to use `cs50.h` to understanding well for beginners, source codes here it does not. So the answers to problem sets, or examples in the courses should be differ from the ones described in course.  
 
 If you'd like to use basic `cs50.h` for your codes, it's required to add the below in your codes `#include <cs50.h>`, and you should compile with the command like:
 
@@ -70,6 +69,8 @@ $ gcc -Wall -o hello ./hello.c -lcs50
 ```
 
 Also, the documents for the `cs50.h` is available [here](https://man.cs50.io/).  
+
+If you have GitHub accounts, you can use CS50 IDE from [this link](https://ide.cs50.io), where you can use many utilities, like `debug50` or `style50` or so, created by CS50, so that you need not install CS50 libraries manually into your environment.  
 
 ## Disclaimer
 
