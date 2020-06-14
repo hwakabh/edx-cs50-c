@@ -69,6 +69,8 @@ If you'd like to use basic `cs50.h` for your codes, it's required to add the bel
 $ gcc -Wall -o hello ./hello.c -lcs50
 ```
 
+Also, the documents for the `cs50.h` is available [here](https://man.cs50.io/).  
+
 ## Disclaimer
 
 All the contents on this repository is totally for personal version controllings, and does not intend to provide best ways to coding with the code here.  
