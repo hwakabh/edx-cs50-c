@@ -19,7 +19,9 @@ This lecture covers:
 The problem Sets for Fall Class of 2020 is available [here](https://cs50.harvard.edu/x/2020/psets/3/), but this directory is also included the ones of past classes.  
 
 - [plurality](https://cs50.harvard.edu/x/2020/psets/3/plurality/)
+  - A program that runs a `Plurality` election
 
 - [runoff](https://cs50.harvard.edu/x/2020/psets/3/runoff/)
+  - A program that runs a `Runoff` election, ranked preference voting system
 
 - [tideman](https://cs50.harvard.edu/x/2020/psets/3/tideman/)
