@@ -20,6 +20,8 @@ The problem sets in this repository are basically based on 2019 CS50 courses, bu
   - [credit](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week1/psets/credit/)
 - [Problem Set 2](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2)
   - [caesar](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/caesar)
+  - [readablity](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/readability)
+  - [substitution](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/substitution)
   - [vigenere](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/vigenere)
   - [crack](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/crack)
   - [initials](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/initials)
