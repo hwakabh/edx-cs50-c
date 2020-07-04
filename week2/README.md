@@ -15,6 +15,7 @@ This lecture covers:
 The problem Sets for Fall Class of 2020 is available [here](https://cs50.harvard.edu/x/2020/psets/2/), but this directory is also included the ones of past classes.  
 
 - [readability](https://cs50.harvard.edu/x/2020/psets/2/readability/)
+  - Computes the approximate grade level needed to comprehend some text with `Coleman-Liau index`
 
 - [caesar](https://cs50.harvard.edu/x/2020/psets/2/caesar/)
   - `Caesar encryption` basic
@@ -22,6 +23,7 @@ The problem Sets for Fall Class of 2020 is available [here](https://cs50.harvard
     - <https://docs.cs50.net/2018/x/psets/2/caesar/caesar.html>
 
 - [substitutions](https://cs50.harvard.edu/x/2020/psets/2/substitution/)
+  - A program that implements a substitution cipher
 
 - Other past psets
   - [vigenere](https://docs.cs50.net/2018/x/psets/2/vigenere/vigenere.html)
