@@ -26,8 +26,9 @@ The problem sets in this repository are basically based on 2019 CS50 courses, bu
   - [crack](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/crack)
   - [initials](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week2/psets/initials)
 - [Problem Set 3](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week3/)
-  - music
-  - fifteen
+  - [plurality](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week3/psets/plurality)
+  - [runoff](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week3/psets/runoff)
+  - [tideman](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week3/psets/tideman)
 
 ## Runtimes
 
