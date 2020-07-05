@@ -32,6 +32,8 @@ The problem sets in this repository are basically based on 2019 CS50 courses, bu
 - [Problem Set 4](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week4/)
   - [fliter](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week4/psets/filter)
   - [recover](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week4/psets/recover)
+- [Problem Set 5](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week5/)
+  - [speller](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week5/psets/speller)
 
 ## Runtimes
 
