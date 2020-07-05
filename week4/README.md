@@ -13,7 +13,7 @@ This lecture covers:
 
 ## Problem Set 4
 
-The problem Sets for Fall Class of 2020 is available [here](https://cs50.harvard.edu/x/2020/psets/3/).  
+The problem Sets for Fall Class of 2020 is available [here](https://cs50.harvard.edu/x/2020/psets/5/).  
 
 - [Filter (more)](https://cs50.harvard.edu/x/2020/psets/4/filter/more/)
 
