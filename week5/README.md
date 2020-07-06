@@ -16,3 +16,4 @@ The problem Sets for Fall Class of 2020 is available [here](https://cs50.harvard
 
 - [Speller](https://cs50.harvard.edu/x/2020/psets/5/speller/)
   - A program that spell-checks a file using a hash table
+    - Note that in this pset, it's required to complete functionalities in `dictionary.c`, instead of whole codes
