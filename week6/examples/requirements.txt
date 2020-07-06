@@ -1,0 +1,4 @@
+cs50
+speech_recognition
+qrcode
+pillow
