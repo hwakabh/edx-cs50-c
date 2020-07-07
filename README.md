@@ -34,6 +34,14 @@ The problem sets in this repository are basically based on 2019 CS50 courses, bu
   - [recover](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week4/psets/recover)
 - [Problem Set 5](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week5/)
   - [speller](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week5/psets/speller)
+- [Problem Set 6](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/)
+  - [hello](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/hello)
+  - [mario (less)](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/mario/less)
+  - [mario (more)](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/mario/more)
+  - [cash](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/cash)
+  - [credit](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/credit)
+  - [readability](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/readability)
+  - [dna](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/dna)
 
 ## Runtimes
 
