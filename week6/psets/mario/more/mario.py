@@ -10,8 +10,9 @@ def main():
 
     # Print out blocks
     for i in range(1, h + 1):
-        line = " " * (h - i) + "#" * i + "  " + "#" * i + " " * (h - i)
-        print(line)
+        left = " " * (h - i) + "#" * i
+        right = "#" * i + " " * (h - i)
+        print(left, right, sep="  ")
 
 
 main()
