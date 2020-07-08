@@ -42,6 +42,9 @@ The problem sets in this repository are basically based on 2019 CS50 courses, bu
   - [credit](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/credit)
   - [readability](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/readability)
   - [dna](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week6/psets/dna)
+- [Problem Set 7](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week7/)
+  - [movies](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week7/psets/movies)
+  - [houses](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week7/psets/houses)
 
 ## Runtimes
 
