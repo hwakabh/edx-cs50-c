@@ -1,0 +1,9 @@
+/* Overwrite Bootstrap definitions */
+
+.body {
+    padding: 10px;
+}
+
+.username {
+    padding-left: 10px;
+}
