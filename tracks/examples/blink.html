@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>blink</title>
+        <!-- <script src="./PATH_TO_JS_FILE"></script> -->
+        <script>
+            function blink() {
+                let body = document.querySelector('body');
+
+                if (body.style.visibility === 'hidden') {
+                    body.style.visibility = 'visible';
+                } else {
+                    body.style.visibility = 'hidden';
+                }
+            }
+
+            // Loop function with some interval: 500ms
+            window.setInterval(blink, 500);
+        </script>
+    </head>
+    <body>
+        Hello, world!
+    </body>
+</html> 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>geolocation</title>
+    </head>
+
+    <body>
+        <script>
+            // Using navigator with callback
+            navigator.geolocation.getCurrentPosition(function(position) {
+                // Print result with `document.write`
+                // HTML source should be updated as `<body>35.662807460032134, 139.66778564000853</body>`
+                document.write(position.coords.latitude + ', ' + position.coords.longitude);
+            });
+        </script>
+    </body>
+</html>

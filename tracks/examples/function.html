@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>
+            Hello!
+        </title>
+        <script>
+            function greet() {
+                // Get user-input by HTML-ID
+                let name = document.querySelector('#username').value;
+                // Set default value if no user input
+                if (name === '') {
+                    name = 'world';
+                }
+                alert('hello, ' + name + '!');
+            }
+        </script>
+    </head>    
+    <body>
+        <!-- set `return false` to return nothing after click submit button -->
+        <form onsubmit="greet(); return false;">
+            <input type="text" id="username">
+            <input type="submit">
+        </form>
+    </body>
+</html> 

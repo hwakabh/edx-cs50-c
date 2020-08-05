@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>
+            Hello!
+        </title>
+    </head>    
+    <body>
+        <button id="red">R</button>
+        <button id="green">G</button>
+        <button id="blue">B</button>
+
+        <!-- should be written after the id provided -->
+        <script>
+            // For removing duplicated code, set common codes as variables
+            let body = document.querySelector('body');
+
+            // Set anonymous functions with onclick
+            document.querySelector('#red').onclick = function() {
+                // If specify the name of tag, no need to using # or .
+                body.style.backgroundColor = 'red';
+            }
+            document.querySelector('#green').onclick = function() {
+                body.style.backgroundColor = 'green';
+            }
+            document.querySelector('#blue').onclick = function() {
+                body.style.backgroundColor = 'blue';
+            }
+        </script>
+
+      </body>
+</html> 
