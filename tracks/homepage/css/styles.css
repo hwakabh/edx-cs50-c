@@ -4,10 +4,15 @@
 
 .body {
     padding: 10px;
+    color: gray;
 }
 /* for adjusting icon images in navbar */
 .username {
     padding-left: 10px;
+}
+
+.subsection-name {
+    color: #007bff;
 }
 
 /* --- index.html */
