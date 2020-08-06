@@ -1,9 +1,16 @@
 /* Overwrite Bootstrap definitions */
 
+/* --- Common */
+
 .body {
     padding: 10px;
 }
-
+/* for adjusting icon images in navbar */
 .username {
     padding-left: 10px;
 }
+
+/* --- index.html */
+/* --- about.html */
+/* --- projects.html */
+/* --- contacts.html */
