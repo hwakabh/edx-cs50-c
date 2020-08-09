@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <!-- With Jinja, get variable from render_template()
+    Hello {{ name }} from Flask!
+    <br>
+    Your random number is {{ number }}
+    <br>
+    {% if number == 1 %}
+        Your coin flip is HEADS.
+    {% else %}
+        Your coin flip is TAILS.
+    {% endif %} -->
+    <form action="/hello">
+        <input name="name" type="text">
+        <input type="submit">
+    </form>
+{% endblock %}
