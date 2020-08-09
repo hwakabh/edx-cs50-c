@@ -1,6 +1,9 @@
 /* Overwrite Bootstrap definitions */
 
 /* --- Common */
+div, i, a {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
 .body {
     padding: 10px;
