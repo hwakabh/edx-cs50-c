@@ -256,6 +256,7 @@ def register():
 def sell():
     # Get user_id for fetching stock data user already bought
     user_id = session['user_id']
+    user_cash = db.execute("SELECT * FROM users WHERE id = :user_id", user_id=user_id)[0]['cash']
 
     if request.method == "GET":
         # Generate list of symbols
@@ -275,9 +276,35 @@ def sell():
         if sell_quans > row[0]['quantity']:
             return apology("Unsufficient shares for selling.")
         else:
-            print(row)
-            # TODO: Lookup latest price of stock
+            # Lookup latest price of stock
+            price = lookup(symbol=sell_stock)['price']
+            subtotal = float(price) * float(sell_quans)
+            # print(f'Selling stock of {sell_stock} (per ${price}) and earns {subtotal}')
+
             # TODO: Update user cash / stock table / history
+            db.execute(
+                "UPDATE stocks SET quantity = :quantity WHERE user_id = :user_id AND symbol = :symbol",
+                quantity=int(row[0]['quantity'] - sell_quans),
+                user_id=user_id,
+                symbol=sell_stock
+            )
+            # Update user history
+            db.execute(
+                "INSERT INTO history (user_id, transaction_type, symbol, quantity, price) VALUES (:user_id, :transaction_type, :symbol, :quantity, :price)",
+                user_id=user_id,
+                transaction_type="sell",
+                symbol=sell_stock,
+                quantity=sell_quans,
+                price=price
+            )
+            # Update user cash
+            db.execute(
+                "UPDATE users SET cash = :cash WHERE id = :user_id",
+                cash=float(user_cash + subtotal),
+                user_id=user_id
+            )
+
+            # TODO: Clean up records if quantity == 0
             return redirect("/")
 
 
