@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input id="password" autocomplete="off" autofocus class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input id="password-confirm" class="form-control" name="password-confirm" placeholder="Password(Again)" type="password">
+        </div>
+        <button id="submit-button" class="btn btn-primary" type="submit">Register</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+    document.querySelector('#submit-button').onclick = function() {
+        if (document.querySelector('#password').value === document.querySelector('#password-confirm').value) {
+            alert('Valid password');
+        } else {
+            alert('Password should be matched.');
+        }
+    }
+{% endblock %}
