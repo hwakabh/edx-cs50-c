@@ -207,7 +207,7 @@ def logout():
 
 
 @app.route("/quote", methods=["GET", "POST"])
-# @login_required
+@login_required
 def quote():
     if request.method == "GET":
         return render_template("quote.html")
@@ -221,9 +221,6 @@ def quote():
             return apology("Sorry, symbol not found. Check company code provided.")
 
         return render_template("quoted.html", result=result)
-
-    # """Get stock quote."""
-    # return apology("TODO")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -257,16 +254,31 @@ def register():
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
-    if request.method == "GET":
-        # should display the form to sell a stock
-        pass
-    elif request.method == "POST":
-        # sell the specified number of shares of stock
-        # update the user's cash
-        pass
+    # Get user_id for fetching stock data user already bought
+    user_id = session['user_id']
 
-    """Sell shares of stock"""
-    return apology("TODO")
+    if request.method == "GET":
+        # Generate list of symbols
+        stocks = db.execute("SELECT * FROM stocks WHERE user_id = :user_id", user_id=user_id)
+        symbols = [stock['symbol'] for stock in stocks]
+
+        return render_template("sell.html", symbols=symbols)
+
+    elif request.method == "POST":
+        sell_quans = int(request.form.get('shares'))
+        sell_stock = request.form.get('symbol')
+
+        # Fetch numbers of stocks for selling
+        row = db.execute("SELECT * FROM stocks WHERE user_id = :user_id AND symbol = :symbol", user_id=user_id, symbol=sell_stock)
+
+        # Case if value of shares provided is bigger than current shares
+        if sell_quans > row[0]['quantity']:
+            return apology("Unsufficient shares for selling.")
+        else:
+            print(row)
+            # TODO: Lookup latest price of stock
+            # TODO: Update user cash / stock table / history
+            return redirect("/")
 
 
 def errorhandler(e):
