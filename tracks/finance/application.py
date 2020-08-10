@@ -2,6 +2,7 @@
 # - feature of updating user password
 # - feature of manage password policy: Longer than 8-digits, including char/num, ...etc
 
+from datetime import datetime
 import os
 
 from cs50 import SQL
@@ -40,7 +41,7 @@ Session(app)
 db = SQL("sqlite:///finance.db")
 # Create tables related to each user
 db.execute("CREATE TABLE IF NOT EXISTS stocks ('user_id' INTEGER, 'symbol' VARCHAR(10), 'quantity' INTEGER)")
-db.execute("CREATE TABLE IF NOT EXISTS history ('user_id' INTEGER, 'transaction_type' VARCHAR(5), 'symbol' VARCHAR(5),'quantity' INTEGER, 'price' FLOAT)")
+db.execute("CREATE TABLE IF NOT EXISTS history ('timestamp' timestamp, 'user_id' INTEGER, 'transaction_type' VARCHAR(5), 'symbol' VARCHAR(5),'quantity' INTEGER, 'price' FLOAT)")
 
 # Make sure API key is set
 if not os.environ.get("API_KEY"):
@@ -138,7 +139,8 @@ def buy():
 
             # Update user history
             db.execute(
-                "INSERT INTO history (user_id, transaction_type, symbol, quantity, price) VALUES (:user_id, :transaction_type, :symbol, :quantity, :price)",
+                "INSERT INTO history (timestamp, user_id, transaction_type, symbol, quantity, price) VALUES (:timestamp, :user_id, :transaction_type, :symbol, :quantity, :price)",
+                timestamp=datetime.now(),
                 user_id=user_id,
                 transaction_type="buy",
                 symbol=result.get('symbol'),
@@ -298,7 +300,8 @@ def sell():
                 )
             # Update user history
             db.execute(
-                "INSERT INTO history (user_id, transaction_type, symbol, quantity, price) VALUES (:user_id, :transaction_type, :symbol, :quantity, :price)",
+                "INSERT INTO history (timestamp, user_id, transaction_type, symbol, quantity, price) VALUES (:timestamp, :user_id, :transaction_type, :symbol, :quantity, :price)",
+                timestamp=datetime.now(),
                 user_id=user_id,
                 transaction_type="sell",
                 symbol=sell_stock,
