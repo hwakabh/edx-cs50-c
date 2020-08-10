@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block main %}
-
-    {{ result }}
+  <div>
+      A share of {{ result['name'] }} ({{ result['symbol'] }}) costs ${{ result['price'] }}.
+  </div>
 
 {% endblock %}
 

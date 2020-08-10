@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block style %}
+    td .total-balance {
+        color: red;
+    }
+{% endblock %}
+
+{% block main %}
+
+{{ rows }}
+
+<table class="table">
+  <thead>
+      <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col">Shares</th>
+          <th scope="col">Price</th>
+          <th scope="col">Total</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <th scope="row"></th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <!-- Wrapping up all the balances include both cash and stocks -->
+      <tr>
+        <th scope="row">CASH</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="total-balance">${{ cash }}</td>
+      </tr>
+  </tbody>
+</table>
+{% endblock %}
+

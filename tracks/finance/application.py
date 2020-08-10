@@ -38,6 +38,9 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
+# Create tables related to each user
+db.execute("CREATE TABLE IF NOT EXISTS stocks ('user_id' INTEGER, 'symbol' VARCHAR(10), 'quantity' INTEGER)")
+db.execute("CREATE TABLE IF NOT EXISTS history ('user_id' INTEGER, 'transaction_type' VARCHAR(5), 'symbol' VARCHAR(5),'quantity' INTEGER, 'price' FLOAT)")
 
 # Make sure API key is set
 if not os.environ.get("API_KEY"):
@@ -52,24 +55,85 @@ def index():
     #   the current price of each stock
     #   the total value of each holding
     # display the user's current cash balance
+    user_id = session['user_id']
 
-    """Show portfolio of stocks"""
-    # return "<h1>Logged in</h1>"
-    return apology("TODO")
+    # Get current user cash remained
+    row = db.execute("SELECT * FROM users WHERE id = :user_id", user_id=user_id)
+    cash = row[0].get("cash")  # render to template
+
+    # Get list of stocks user owned & query current price
+    stocks = db.execute("SELECT * FROM stocks WHERE user_id = :user_id", user_id=user_id)
+    print(stocks)
+    return render_template("index.html", cash=cash, rows=stocks)
+
+    # """Show portfolio of stocks"""
+    # # return "<h1>Logged in</h1>"
+    # return apology("TODO")
 
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
     if request.method == "GET":
-        # should display form to buy a stock
-        pass
-    elif request.method == "POST":
-        # purchase the stock as long as the user can afford it
-        pass
+        return render_template("buy.html")
 
-    """Buy shares of stock"""
-    return apology("TODO")
+    elif request.method == "POST":
+        symbol = request.form.get("symbol")
+        shares = int(request.form.get("shares"))
+
+        # Check current price of provided stock
+        result = lookup(symbol=symbol)
+        if not result:
+            return apology("Symbol not found, check company code provided.")
+
+        # Calculate subtotal price for updating records of user
+        subtotal = float(result.get('price', 0)) * float(shares)
+
+        # Fetch current user's cash & update them
+        user_id = session['user_id']
+        row = db.execute("SELECT * FROM users WHERE id = :user_id", user_id=user_id)
+        user_cash = float(row[0]['cash'])
+
+        if subtotal > user_cash:
+            return apology("Unsufficient cash, you could not buy stocks.")
+        else:
+            # Update user cash after buy stocks
+            db.execute(
+                "UPDATE users SET cash = :cash_remain WHERE id = :user_id",
+                cash_remain=float(user_cash - subtotal),
+                user_id=user_id
+            )
+
+            # Update purchase information by user
+            rows = db.execute("SELECT * FROM stocks WHERE user_id = :user_id AND symbol = :symbol", user_id=user_id, symbol=symbol)
+            if rows and len(rows) == 1:
+                # if stock already bought, update records
+                db.execute(
+                    "UPDATE stocks SET symbol = :symbol, quantity = :quantity WHERE user_id = :user_id AND symbol = :symbol",
+                    symbol=symbol,
+                    quantity=shares+rows[0].get('quantity', 0),
+                    user_id=user_id
+                )
+            else:
+                # case if user newly buy the stock
+                db.execute(
+                    "INSERT INTO stocks (user_id, symbol, quantity) VALUES (:user_id, :symbol, :quantity)",
+                    user_id=user_id,
+                    symbol=symbol,
+                    quantity=shares
+                )
+
+            # Update user history
+            db.execute(
+                "INSERT INTO history (user_id, transaction_type, symbol, quantity, price) VALUES (:user_id, :transaction_type, :symbol, :quantity, :price)",
+                user_id=user_id,
+                transaction_type="buy",
+                symbol=result.get('symbol'),
+                quantity=shares,
+                price=result.get('price')
+            )
+
+            return redirect("/")
 
 
 @app.route("/history")
@@ -171,7 +235,7 @@ def register():
         user_id = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
         session['user_id'] = user_id[0]['id']
 
-        return redirect("/index")
+        return redirect("/")
 
     """Register user"""
     return apology("TODO")
