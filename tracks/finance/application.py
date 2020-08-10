@@ -138,10 +138,15 @@ def quote():
     elif request.method == "POST":
         # TODO: validation for non-input of 'symbol' should be implemented in quote.html with JavaScript
         result = lookup(symbol=request.form.get("symbol"))
+
+        # Case lookup returns None
+        if not result:
+            return apology("Sorry, symbol not found. Check company code provided.")
+
         return render_template("quoted.html", result=result)
 
-    """Get stock quote."""
-    return apology("TODO")
+    # """Get stock quote."""
+    # return apology("TODO")
 
 
 @app.route("/register", methods=["GET", "POST"])
