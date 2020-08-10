@@ -155,9 +155,28 @@ def buy():
 @login_required
 def history():
     # display a table with a history of all transactions by each user
+    user_id = session['user_id']
+    transactions = db.execute("SELECT * FROM history WHERE user_id = :user_id", user_id=user_id)
 
-    """Show history of transactions"""
-    return apology("TODO")
+    if len(transactions) <= 0:
+        return apology("No transaction exists.")
+    else:
+        # Build body to render
+        histories = []
+
+        for transaction in transactions:
+            shares = transaction['quantity']
+            if transaction['transaction_type'] == 'sell':
+                shares = (-1) * shares
+
+            histories.append({
+                'symbol': transaction['symbol'],
+                'shares': shares,
+                'price': transaction['price'],
+                'timestamp': transaction['timestamp']
+            })
+        
+        return render_template("history.html", histories=histories)
 
 
 @app.route("/login", methods=["GET", "POST"])
