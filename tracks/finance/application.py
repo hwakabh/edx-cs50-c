@@ -92,6 +92,7 @@ def buy():
         return render_template("buy.html")
 
     elif request.method == "POST":
+        # TODO: Add validation case if user will submit without any input(symbol/shares)
         symbol = request.form.get("symbol")
         shares = int(request.form.get("shares"))
 
@@ -250,6 +251,7 @@ def register():
         return render_template("register.html")
 
     elif request.method == "POST":
+        # TODO: added validation with JavaScript checking password and confirmation are exactly equal or not
         # check username/email already exists or not
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
         if len(rows) >= 1:
@@ -268,9 +270,6 @@ def register():
 
         return redirect("/")
 
-    """Register user"""
-    return apology("TODO")
-
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
@@ -287,6 +286,7 @@ def sell():
         return render_template("sell.html", symbols=symbols)
 
     elif request.method == "POST":
+        # TODO: add validation for the case if user will submit without any input(symbol/shares)
         sell_quans = int(request.form.get('shares'))
         sell_stock = request.form.get('symbol')
 
@@ -300,7 +300,6 @@ def sell():
             # Lookup latest price of stock
             price = lookup(symbol=sell_stock)['price']
             subtotal = float(price) * float(sell_quans)
-            # print(f'Selling stock of {sell_stock} (per ${price}) and earns {subtotal}')
 
             # Update stock table
             if sell_quans == row[0]['quantity']:
