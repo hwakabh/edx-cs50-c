@@ -50,25 +50,38 @@ if not os.environ.get("API_KEY"):
 @app.route("/")
 @login_required
 def index():
-    # display a table with all of the current user stocks
-    #   the numbers of share of each
-    #   the current price of each stock
-    #   the total value of each holding
-    # display the user's current cash balance
+    # table data for render in index.html
+    user_data = []
     user_id = session['user_id']
 
     # Get current user cash remained
     row = db.execute("SELECT * FROM users WHERE id = :user_id", user_id=user_id)
-    cash = row[0].get("cash")  # render to template
+    cash = row[0].get("cash")
+
+    owns = cash
 
     # Get list of stocks user owned & query current price
     stocks = db.execute("SELECT * FROM stocks WHERE user_id = :user_id", user_id=user_id)
-    print(stocks)
-    return render_template("index.html", cash=cash, rows=stocks)
+    for stock in stocks:
+        # Lookup latest price
+        result = lookup(symbol=stock['symbol'])
 
-    # """Show portfolio of stocks"""
-    # # return "<h1>Logged in</h1>"
-    # return apology("TODO")
+        # Build dict for displaying with loop
+        name = result['name']
+        price = float(result.get('price', 0))
+        total_per_symbol = price * float(stock['quantity'])
+        user_data.append({
+            'symbol': stock['symbol'],
+            'name': name,
+            'shares': stock['quantity'],
+            'price': price,
+            'total': total_per_symbol
+        })
+
+        # Calculate balance user owns
+        owns += total_per_symbol
+
+    return render_template("index.html", user_data=user_data, cash=cash, owns=owns)
 
 
 @app.route("/buy", methods=["GET", "POST"])
