@@ -54,6 +54,7 @@ def index():
     # display the user's current cash balance
 
     """Show portfolio of stocks"""
+    # return "<h1>Logged in</h1>"
     return apology("TODO")
 
 
@@ -129,14 +130,15 @@ def logout():
 
 
 @app.route("/quote", methods=["GET", "POST"])
-@login_required
+# @login_required
 def quote():
     if request.method == "GET":
-        # should display form to request stock quote
-        pass
+        return render_template("quote.html")
+
     elif request.method == "POST":
-        # execute lookup() to search stock information and display the result
-        pass
+        # TODO: validation for non-input of 'symbol' should be implemented in quote.html with JavaScript
+        result = lookup(symbol=request.form.get("symbol"))
+        return render_template("quoted.html", result=result)
 
     """Get stock quote."""
     return apology("TODO")
