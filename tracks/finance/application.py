@@ -281,13 +281,21 @@ def sell():
             subtotal = float(price) * float(sell_quans)
             # print(f'Selling stock of {sell_stock} (per ${price}) and earns {subtotal}')
 
-            # TODO: Update user cash / stock table / history
-            db.execute(
-                "UPDATE stocks SET quantity = :quantity WHERE user_id = :user_id AND symbol = :symbol",
-                quantity=int(row[0]['quantity'] - sell_quans),
-                user_id=user_id,
-                symbol=sell_stock
-            )
+            # Update stock table
+            if sell_quans == row[0]['quantity']:
+                # Case if shares will be 0 after selling, delete records
+                db.execute(
+                    "DELETE FROM stocks WHERE user_id = :user_id AND symbol = :symbol",
+                    user_id=user_id,
+                    symbol=sell_stock
+                )
+            else:
+                db.execute(
+                    "UPDATE stocks SET quantity = :quantity WHERE user_id = :user_id AND symbol = :symbol",
+                    quantity=int(row[0]['quantity'] - sell_quans),
+                    user_id=user_id,
+                    symbol=sell_stock
+                )
             # Update user history
             db.execute(
                 "INSERT INTO history (user_id, transaction_type, symbol, quantity, price) VALUES (:user_id, :transaction_type, :symbol, :quantity, :price)",
@@ -304,7 +312,6 @@ def sell():
                 user_id=user_id
             )
 
-            # TODO: Clean up records if quantity == 0
             return redirect("/")
 
 
