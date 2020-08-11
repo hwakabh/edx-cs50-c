@@ -228,6 +228,46 @@ def logout():
     return redirect("/")
 
 
+@app.route("/profile", methods=["GET", "POST"])
+@login_required
+def profile():
+    user_id = session['user_id']
+    user_profile = db.execute("SELECT * FROM users WHERE id = :user_id", user_id=user_id)[0]
+
+    if request.method == "GET":
+        return render_template("profile.html", account=user_profile)
+
+    elif request.method == "POST":
+        new_username = request.form.get("username")
+
+        # Case if user did not update their username, apply current one
+        if new_username == '':
+            new_username = user_profile['username']
+        else:
+            # Case if username already taken
+            rows = db.execute("SELECT * FROM users WHERE username = :username", username=new_username)
+            if len(rows):
+                return apology("Provided username already taken.")
+
+        new_password = request.form.get("confirmation")
+        print(new_password)
+        print(generate_password_hash(new_password))
+        print(user_profile['hash'])
+
+        # Case if user would provide same password as current one
+        if generate_password_hash(new_password) == user_profile['hash']:
+            return apology("New password should not be same as old one.")
+
+        else:
+            db.execute(
+                "UPDATE users SET username = :username, hash = :new_password WHERE id = :user_id",
+                username=new_username,
+                new_password=generate_password_hash(new_password),
+                user_id=user_id
+            )
+            return redirect("/")
+
+
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
