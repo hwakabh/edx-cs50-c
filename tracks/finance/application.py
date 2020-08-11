@@ -54,7 +54,6 @@ def index():
     # Get current user cash remained
     row = db.execute("SELECT * FROM users WHERE id = :user_id", user_id=user_id)
     cash = row[0].get("cash")
-
     owns = cash
 
     # Get list of stocks user owned & query current price
@@ -341,7 +340,7 @@ def sell():
 
         # User input validation
         if sell_stock == 'symbols':
-            return apology("Must select symbol to shell.")
+            return apology("Must select symbol to sell.")
         if not sell_quans:
             return apology("Must provide shares to sell.")
         if int(sell_quans) <= 0:
@@ -359,7 +358,7 @@ def sell():
             subtotal = float(price) * float(sell_quans)
 
             # Update stock table
-            if sell_quans == row[0]['quantity']:
+            if int(sell_quans) == row[0]['quantity']:
                 # Case if shares will be 0 after selling, delete records
                 db.execute(
                     "DELETE FROM stocks WHERE user_id = :user_id AND symbol = :symbol",
