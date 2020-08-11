@@ -18,13 +18,3 @@
         <button id="submit-button" class="btn btn-primary" type="submit">Register</button>
     </form>
 {% endblock %}
-
-{% block script %}
-    document.querySelector('#submit-button').onclick = function() {
-        if (document.querySelector('#password').value === document.querySelector('#confirmation').value) {
-            alert('Valid password');
-        } else {
-            alert('Password should be matched.');
-        }
-    }
-{% endblock %}

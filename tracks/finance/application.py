@@ -1,7 +1,3 @@
-# Add personal touch
-# - feature of updating user password
-# - feature of manage password policy: Longer than 8-digits, including char/num, ...etc
-
 from datetime import datetime
 import os
 
@@ -39,7 +35,7 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
-# Create tables related to each user
+# Create models related to each user
 db.execute("CREATE TABLE IF NOT EXISTS stocks ('user_id' INTEGER, 'symbol' VARCHAR(10), 'quantity' INTEGER)")
 db.execute("CREATE TABLE IF NOT EXISTS history ('timestamp' timestamp, 'user_id' INTEGER, 'transaction_type' VARCHAR(5), 'symbol' VARCHAR(5),'quantity' INTEGER, 'price' FLOAT)")
 
@@ -250,12 +246,11 @@ def profile():
                 return apology("Provided username already taken.")
 
         new_password = request.form.get("confirmation")
-        print(new_password)
-        print(generate_password_hash(new_password))
-        print(user_profile['hash'])
+        if not new_password or not request.form.get("password"):
+            return apology("Must provide new password.")
 
         # Case if user would provide same password as current one
-        if generate_password_hash(new_password) == user_profile['hash']:
+        if check_password_hash(user_profile['hash'], new_password):
             return apology("New password should not be same as old one.")
 
         else:
@@ -291,7 +286,18 @@ def register():
         return render_template("register.html")
 
     elif request.method == "POST":
-        # TODO: added validation with JavaScript checking password and confirmation are exactly equal or not
+        # Validation for password
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+        if not username:
+            return apology("Must provide username.")
+        if not password or not confirmation:
+            return apology("Must provide password.")
+        
+        if password != confirmation:
+            return apology("Password did not match.")
+
         # check username/email already exists or not
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
         if len(rows) >= 1:
