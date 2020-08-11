@@ -8,7 +8,7 @@
     <form action="/sell" method="post">
         <div class="form-group">
             <select name="symbol" class="custom-select mr-sm-2">
-                <option selected>Symbols</option>
+                <option value="symbols" selected>Symbols</option>
                 {% for symbol in symbols %}
                     <option value="{{ symbol }}">{{ symbol }}</option>
                 {% endfor %}

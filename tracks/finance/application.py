@@ -88,9 +88,14 @@ def buy():
         return render_template("buy.html")
 
     elif request.method == "POST":
-        # TODO: Add validation case if user will submit without any input(symbol/shares)
         symbol = request.form.get("symbol")
-        shares = int(request.form.get("shares"))
+        shares = request.form.get("shares")
+
+        # validation for user input(note that validation for symbol would be included with result of lookup())
+        if not shares:
+            return apology("Must provide shares to buy.")
+        if int(shares) <= 0:
+            return apology("Please provide positive number for shares.")
 
         # Check current price of provided stock
         result = lookup(symbol=symbol)
@@ -122,7 +127,7 @@ def buy():
                 db.execute(
                     "UPDATE stocks SET symbol = :symbol, quantity = :quantity WHERE user_id = :user_id AND symbol = :symbol",
                     symbol=symbol,
-                    quantity=shares+rows[0].get('quantity', 0),
+                    quantity=int(shares)+rows[0].get('quantity', 0),
                     user_id=user_id
                 )
             else:
@@ -131,7 +136,7 @@ def buy():
                     "INSERT INTO stocks (user_id, symbol, quantity) VALUES (:user_id, :symbol, :quantity)",
                     user_id=user_id,
                     symbol=symbol,
-                    quantity=shares
+                    quantity=int(shares)
                 )
 
             # Update user history
@@ -270,7 +275,6 @@ def quote():
         return render_template("quote.html")
 
     elif request.method == "POST":
-        # TODO: validation for non-input of 'symbol' should be implemented in quote.html with JavaScript
         result = lookup(symbol=request.form.get("symbol"))
 
         # Case lookup returns None
@@ -332,15 +336,22 @@ def sell():
         return render_template("sell.html", symbols=symbols)
 
     elif request.method == "POST":
-        # TODO: add validation for the case if user will submit without any input(symbol/shares)
-        sell_quans = int(request.form.get('shares'))
+        sell_quans = request.form.get('shares')
         sell_stock = request.form.get('symbol')
+
+        # User input validation
+        if sell_stock == 'symbols':
+            return apology("Must select symbol to shell.")
+        if not sell_quans:
+            return apology("Must provide shares to sell.")
+        if int(sell_quans) <= 0:
+            return apology("Please provide positive number for shares to sell.")
 
         # Fetch numbers of stocks for selling
         row = db.execute("SELECT * FROM stocks WHERE user_id = :user_id AND symbol = :symbol", user_id=user_id, symbol=sell_stock)
 
         # Case if value of shares provided is bigger than current shares
-        if sell_quans > row[0]['quantity']:
+        if int(sell_quans) > row[0]['quantity']:
             return apology("Unsufficient shares for selling.")
         else:
             # Lookup latest price of stock
@@ -358,7 +369,7 @@ def sell():
             else:
                 db.execute(
                     "UPDATE stocks SET quantity = :quantity WHERE user_id = :user_id AND symbol = :symbol",
-                    quantity=int(row[0]['quantity'] - sell_quans),
+                    quantity=int(row[0]['quantity']) - int(sell_quans),
                     user_id=user_id,
                     symbol=sell_stock
                 )
@@ -369,7 +380,7 @@ def sell():
                 user_id=user_id,
                 transaction_type="sell",
                 symbol=sell_stock,
-                quantity=sell_quans,
+                quantity=int(sell_quans),
                 price=price
             )
             # Update user cash
