@@ -6,7 +6,7 @@ This repository stores my solutions for CS50 Solutions Sets, and all the content
 ## Courses
 
 Based on the online courses by edX, MOOC by Harbard, MIT, and more, **CS50's introduction to Computer Science**.  
-<https://www.edx.org/course/cs50s-introduction-to-computer-science>
+<https://cs50.harvard.edu/x/2020/>
 
 ## Table Of Contents
 
@@ -45,6 +45,8 @@ The problem sets in this repository are basically based on 2019 CS50 courses, bu
 - [Problem Set 7](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week7/)
   - [movies](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week7/psets/movies)
   - [houses](https://github.com/hwakabh/edx-harvard-cs50/tree/master/week7/psets/houses)
+
+Also this repository includes example codes using in the lectures, and final project of this courses.  
 
 ## Runtimes
 
